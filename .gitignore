@@ -1,3 +1,9 @@
-/config
 /workspace
 /proxy/node_modules
+/diffs
+/config/.cache
+/config/.local
+/config/data/logs
+/config/data/User
+/config/data/CachedProfilesData
+/config/.bash_history

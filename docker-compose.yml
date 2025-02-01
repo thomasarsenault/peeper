@@ -6,6 +6,10 @@ services:
       - "3001:3001"
     networks:
       - peeper-network
+    volumes:
+      - ./config/workspace:/config/workspace:ro
+      - ./diffs:/diffs
+      - ./proxy:/app # remove after dev
     depends_on:
       - code-server
   code-server:
@@ -15,16 +19,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PASSWORD=datascience
-      - HASHED_PASSWORD= #optional
-      - SUDO_PASSWORD=password #optional
-      - SUDO_PASSWORD_HASH= #optional
-      - PROXY_DOMAIN=http://proxy-server:3001
-      - DEFAULT_WORKSPACE=/config/workspace #optional
+      - PASSWORD=wouldntyouliketoknow
+      - DEFAULT_WORKSPACE=/config/workspace
       - USE_HTTPS=false
     volumes:
       - ./config:/config
-      - ./workspace:/workspace
     ports:
       - 8443:8443
     networks:
