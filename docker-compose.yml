@@ -1,0 +1,36 @@
+services:
+  peeper-proxy:
+    build: ./proxy
+    container_name: peeper-proxy
+    ports:
+      - "3001:3001"
+    networks:
+      - peeper-network
+    depends_on:
+      - code-server
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=datascience
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=password #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=http://proxy-server:3001
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+      - USE_HTTPS=false
+    volumes:
+      - ./config:/config
+      - ./workspace:/workspace
+    ports:
+      - 8443:8443
+    networks:
+      - peeper-network
+    restart: unless-stopped
+
+networks:
+  peeper-network:
+    external: true
