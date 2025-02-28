@@ -25,7 +25,6 @@ services:
     volumes:
       - ./config:/config
     ports:
-      - 8443:8443
       - 5173:5173
     networks:
       - peeper-network

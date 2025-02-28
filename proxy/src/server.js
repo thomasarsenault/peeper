@@ -34,8 +34,7 @@ const proxyOptions = {
     },
     on: {
         proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-            // inject the big brother code into the initial html returned
-            // (code-server only makes one html request)  (except the login page)
+            // inject the big brother code & the custom header into the initial html returned
             const contentType = proxyRes.headers['content-type'] || '';
             if (contentType.includes('text/html') && req.url === '/?folder=/config/workspace') {
                 let response = responseBuffer.toString('utf8');
