@@ -3,7 +3,7 @@ import path from 'path';
 
 import { createProxyMiddleware, responseInterceptor } from 'http-proxy-middleware';
 import { fileURLToPath } from 'url';
-import { FilePeeper } from './file-peeper.js';
+import { initFilePeeper } from './file-peeper.js';
 
 const CODE_SERVER_URL = 'http://code-server:8443' //change to localhost when not in container
 const PROXY_SERVER_PORT = 3001;
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/peeper.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/peeper.js'));
+    res.sendFile(path.join(__dirname, '../public/peeper.js'));
 });
 
 const proxyOptions = {
@@ -80,14 +80,9 @@ app.listen(PROXY_SERVER_PORT, () => {
     console.log(`Express proxy server is running on port ${PROXY_SERVER_PORT}`);
 })
 
-const filePeeper = new FilePeeper(
-    '/config/workspace',
-    '/diffs'
-);
-
 try {
-    await filePeeper.init();
+    await initFilePeeper('/config/workspace', '/diffs');
     console.log('file peeper initialized successfully')
 } catch (e) {
-    console.error('Failed to init file peeper:', error)
+    console.error('Failed to init file peeper:', e)
 }

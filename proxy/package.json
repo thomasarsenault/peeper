@@ -1,11 +1,11 @@
 {
   "name": "peeper-proxy",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "author": "Thomas Arsenault",
   "license": "ISC",
