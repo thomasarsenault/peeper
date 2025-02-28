@@ -13,7 +13,7 @@ services:
     depends_on:
       - code-server
   code-server:
-    image: lscr.io/linuxserver/code-server:latest
+    build: ./config
     container_name: code-server
     environment:
       - PUID=1000
@@ -26,10 +26,10 @@ services:
       - ./config:/config
     ports:
       - 8443:8443
+      - 5173:5173
     networks:
       - peeper-network
     restart: unless-stopped
 
 networks:
   peeper-network:
-    external: true

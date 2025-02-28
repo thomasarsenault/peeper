@@ -29,6 +29,9 @@ const proxyOptions = {
     secure: false,
     ws: true,
     selfHandleResponse: true,
+    router: {
+        '/proxy/5173': 'http://code-server:5173'
+    },
     on: {
         proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
             // inject the big brother code into the initial html returned
