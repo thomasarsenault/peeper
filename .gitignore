@@ -3,6 +3,8 @@
 /diffs
 /config/.cache
 /config/.local
+/config/.npm
+/config/data
 /config/data/logs
 /config/data/User
 /config/data/CachedProfilesData
