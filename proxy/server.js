@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/peeper.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'peeper.js'));
+    res.sendFile(path.join(__dirname, '/public/peeper.js'));
 });
 
 const proxyOptions = {
@@ -37,7 +37,7 @@ const proxyOptions = {
             // inject the big brother code into the initial html returned
             // (code-server only makes one html request)  (except the login page)
             const contentType = proxyRes.headers['content-type'] || '';
-            if (contentType.includes('text/html')) {
+            if (contentType.includes('text/html') && req.url === '/?folder=/config/workspace') {
                 let response = responseBuffer.toString('utf8');
 
                 if (response.includes('</head>')) {
@@ -58,7 +58,9 @@ const proxyOptions = {
             // socket requests need to come from same origin that was annoying to debug, shouldn't changeOrigin do that for me?
             try {
                 proxyReq.setHeader('Origin', CODE_SERVER_URL);
-                proxyReq.setHeader('Cookie', req.headers.cookie);
+                if (req.headers.cookie) {
+                    proxyReq.setHeader('Cookie', req.headers.cookie);
+                }
             } catch (e) {
                 console.log('Proxy socket error:', e);
                 res.status(500).send('Proxy encountered an error while proxying socket request.');

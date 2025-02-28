@@ -19,7 +19,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - PASSWORD=wouldntyouliketoknow
+      - AUTH=none
       - DEFAULT_WORKSPACE=/config/workspace
       - USE_HTTPS=false
     volumes:
