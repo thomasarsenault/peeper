@@ -4,8 +4,11 @@
 /config/.cache
 /config/.local
 /config/.npm
-/config/data
-/config/data/logs
-/config/data/User
-/config/data/CachedProfilesData
+
+/config/data/*
+!/config/data/User/
+
+/config/data/User/*
+!/config/data/User/settings.json
+
 /config/.bash_history
