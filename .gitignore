@@ -1,5 +1,9 @@
 /workspace
+
 /proxy/node_modules
+/proxy/diffs
+/proxy/dist
+
 /diffs
 /config/.cache
 /config/.local
