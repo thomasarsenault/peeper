@@ -10,7 +10,10 @@ A step towards being able to actually detect these kinds of things involves cont
 
 ### code-server container
 - VSCode web for development environment, server file system + terminal access
+- Proxied access to local dev servers ran inside the container
 - Default config & workspace to load instructions, test files, extensions, bash config, etc
+
+![image](https://github.com/user-attachments/assets/27320158-b69a-43be-9041-a3507459d271)
 
 ### The spying part
 - All traffic to the code server goes through a proxy server which injects `peeper.js` into the first HTML request to execute arbitrary JavaScript code in the browser
